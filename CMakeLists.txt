@@ -13,4 +13,4 @@ set (Tutorial_VERSION_MINOR 0)
 include_directories("${PROJECT_SOURCE_DIR}/include")
  
 # add the executable
-add_executable (${PROJECT_NAME} ${PROJECT_NAME}.cpp ${PROJECT_SOURCE_DIR}/src/gpstime.cpp)
+add_executable (${PROJECT_NAME} ${PROJECT_NAME}.cpp ${PROJECT_SOURCE_DIR}/src/ktl_gpstime.cpp)

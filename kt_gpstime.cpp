@@ -13,13 +13,6 @@ usage()
     std::cout << "Usage: kt_gpstime [-now | -]" << std::endl;
 }
 
-void
-myexit(const char* ErrMsg)
-{
-    printf("ERROR: %s \n", ErrMsg);
-    exit(-1);
-}
-
 
 int
 main (int argc, char **argv)
@@ -41,13 +34,15 @@ main (int argc, char **argv)
              We distinguish them by their indices. */
             {"now",        no_argument,   0, 'n'},
             {"injection",  no_argument,   0, 'i'},
+            {"time", required_argument,   0, 't'},
             {"help",       no_argument,   0, 'h'},
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
-        c = getopt_long (argc, argv, "nih",
+        c = getopt_long (argc, argv, "nit:h",
                          long_options, &option_index);
+
         
         /* Detect the end of the options. */
         if (c == -1)
@@ -62,6 +57,10 @@ main (int argc, char **argv)
             case 'i':
                 printf ("option -i \n");
                 break;
+
+            case 't':
+                printf("%ld\n", unix2gps((time_t)std::stol(optarg, NULL, 10)));
+                break;
                 
             case 'h':
                 usage();
@@ -72,7 +71,6 @@ main (int argc, char **argv)
                 break;
                 
             default:
-                printf("%ld\n", unix2gps((time_t)std::stol(argv[1], NULL, 10)));
                 abort ();
         }
     }

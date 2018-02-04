@@ -1,15 +1,12 @@
 cmake_minimum_required (VERSION 2.6)
 
 project (kt_gpstime)
-
 # The version number.
-set (Tutorial_VERSION_MAJOR 1)
-set (Tutorial_VERSION_MINOR 0)
+set (${PROJECT_NAME}_VERSION_MAJOR 1)
+set (${PROJECT_NAME}_VERSION_MINOR 0)
 
- 
- 
-# add the binary tree to the search path for include files
-# so that we will find TutorialConfig.h
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+# add include
 include_directories("${PROJECT_SOURCE_DIR}/include")
  
 # add the executable

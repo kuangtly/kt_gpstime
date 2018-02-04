@@ -4,6 +4,13 @@
 #include "time.h"
 #include "ktl_gpstime.h"
 
+void
+myexit(const char* ErrMsg)
+{
+    printf("ERROR: %s \n", ErrMsg);
+    exit(-1);
+}
+
 typedef struct LeapSec{
     time_t leapsec;
     time_t shift;

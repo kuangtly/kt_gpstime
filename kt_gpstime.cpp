@@ -12,6 +12,7 @@ usage()
 {
     std::cout << "Usage: kt_gpstime [-n|-t unixtime|-h]" << std::endl
               << "    -n, --now           \t show current gpstime." << std::endl
+              << "    -i, --injection     \t show next next framefile(16s) beginning gpstime" << std::endl
               << "    -t, --time=unixtime \t convert unixtime to gpstime" << std::endl
               << "    -h, --help          \t show this usage information" << std::endl
               << "\n\t ##===============##" << std::endl

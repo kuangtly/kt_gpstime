@@ -4,6 +4,7 @@
 void myexit(const char*);
 time_t unix2gps(time_t);
 time_t leapShift(time_t);
+time_t nextInjTime(time_t);
 
 #endif // _KT_GPSTIME_H
 

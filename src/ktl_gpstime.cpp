@@ -16,6 +16,10 @@ typedef struct LeapSec{
     time_t shift;
 } LeapSec;
 
+//
+// Copied from
+// https://www.ietf.org/timezones/data/leap-seconds.list
+//
 std::vector<LeapSec> leapseclist = {
     {2571782400, 20},    // 1 Jul 1981
     {2603318400, 21},    // 1 Jul 1982
@@ -60,5 +64,11 @@ leapShift(time_t unixTime)
         } 
         return shift;
     }
+}
+
+time_t
+nextInjTime(time_t unixTime)
+{
+    return unix2gps(unixTime)/16*16+32;
 }
 

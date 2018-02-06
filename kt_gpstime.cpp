@@ -10,7 +10,13 @@
 void
 usage()
 {
-    std::cout << "Usage: kt_gpstime [-now | -]" << std::endl;
+    std::cout << "Usage: kt_gpstime [-n|-t unixtime|-h]" << std::endl
+              << "    -n, --now           \t show current gpstime." << std::endl
+              << "    -t, --time=unixtime \t convert unixtime to gpstime" << std::endl
+              << "    -h, --help          \t show this usage information" << std::endl
+              << "\n\t ##===============##" << std::endl
+              << "\t   Expired on 28 December 2018 due to leap second" << std::endl
+              << "\t ##===============##\n" << std::endl;
 }
 
 
@@ -55,7 +61,7 @@ main (int argc, char **argv)
                 break;
 
             case 'i':
-                printf ("option -i \n");
+                printf("%ld\n", nextInjTime(time(NULL)));
                 break;
 
             case 't':

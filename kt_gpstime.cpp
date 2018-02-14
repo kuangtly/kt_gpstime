@@ -13,7 +13,8 @@ usage()
     std::cout << "Usage: kt_gpstime [-nih] [-t unixtime]" << std::endl
               << "    -n, --now           \t show current gpstime." << std::endl
               << "    -i, --injection     \t show next next framefile(16s) beginning gpstime" << std::endl
-              << "    -t, --time=unixtime \t convert unixtime to gpstime" << std::endl
+              << "    -g, --gps=gpstime \t convert gpstime to unixtime" << std::endl
+              << "    -u, --unix=unixtime \t convert unixtime to gpstime" << std::endl
               << "    -h, --help          \t show this usage information" << std::endl
               << "\n\t ##===============##" << std::endl
               << "\t   Expired on 28 December 2018 due to leap second" << std::endl
@@ -41,13 +42,14 @@ main (int argc, char **argv)
              We distinguish them by their indices. */
             {"now",        no_argument,   0, 'n'},
             {"injection",  no_argument,   0, 'i'},
-            {"time", required_argument,   0, 't'},
+            {"gps", required_argument,   0, 'g'},
+            {"unix", required_argument,   0, 'u'},
             {"help",       no_argument,   0, 'h'},
             {0, 0, 0, 0}
         };
         /* getopt_long stores the option index here. */
         int option_index = 0;
-        c = getopt_long (argc, argv, "nit:h",
+        c = getopt_long (argc, argv, "nig:u:h",
                          long_options, &option_index);
 
         
@@ -65,8 +67,12 @@ main (int argc, char **argv)
                 printf("%ld\n", nextInjTime(time(NULL)));
                 break;
 
-            case 't':
+            case 'u':
                 printf("%ld\n", unix2gps((time_t)std::stol(optarg, NULL, 10)));
+                break;
+                
+            case 'g':
+                printf("%ld\n", gps2unix((time_t)std::stol(optarg, NULL, 10)));
                 break;
                 
             case 'h':

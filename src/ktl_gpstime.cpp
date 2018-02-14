@@ -42,6 +42,22 @@ std::vector<LeapSec> leapseclist = {
 };
 
 time_t
+gps2unix(time_t gpsTime)
+{
+    time_t unixTime = gpsTime+315964800-leapShift(gpsTime+315964800);
+
+    if (unix2gps(unixTime) == gpsTime){
+        return unixTime;
+    } else if (unix2gps(unixTime+1) == gpsTime){
+        std::cout << "+1" << std::endl;
+        return unixTime+1; 
+    } else {
+        myexit("TODO: ambiguous unixtime");
+    }
+    
+}
+
+time_t
 unix2gps(time_t unixTime)
 {
     return unixTime-315964800+leapShift(unixTime);
